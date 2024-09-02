@@ -20,8 +20,8 @@ const Section2 = () => {
         {/* Card */}
         <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-[#D88080] p-4 rounded border border-slate-200 shadow">
           <div className="flex items-center justify-between space-x-2 mb-1">
-            <div className="font-bold text-black text-xl">Inception and Vision</div>
-            <time className="font-caveat font-bold text-indigo-500 text-xl">2017</time>
+            <div className="font-bold text-black text-xl underline">Inception and Vision</div>
+            <time className="font-caveat font-bold text-white text-xl">2017</time>
           </div>
           <div className="text-white">Rail Madad was born out of a vision to revolutionize the way passengers interact with Indian Railways. Recognizing the need for a streamlined grievance redressal system, our goal was to create a platform that would make it easier for passengers to voice their concerns and get timely resolutions. The inception of Rail Madad marked a significant step towards enhancing the overall travel experience.</div>
         </div>
@@ -36,8 +36,8 @@ const Section2 = () => {
         {/* Card */}
         <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-[#D88080] p-4 rounded border border-slate-200 shadow">
           <div className="flex items-center justify-between space-x-2 mb-1">
-            <div className="font-bold text-black text-xl">Development Phase</div>
-            <time className="font-caveat font-bold text-indigo-500 text-xl">2018-2019</time>
+            <div className="font-bold text-black underline text-xl">Development Phase</div>
+            <time className="font-caveat font-bold text-white text-xl">2018-2019</time>
           </div>
           <div className="text-white">Rail Madad was officially launched in 1st of November in the year 2018, Marking a new era in passenger services for Indian Railways. The application introduced a range of features aimed at simplifying the grievance redressal process, from easy submission of complaints to real-time tracking of their status. The response was overwhelming, with thousands of users joining the platform within the first month.</div>
         </div>
@@ -52,8 +52,8 @@ const Section2 = () => {
         {/* Card */}
         <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-[#D88080] p-4 rounded border border-slate-200 shadow">
           <div className="flex items-center justify-between space-x-2 mb-1">
-            <div className="font-bold text-black text-xl">Launch of Rail Madad</div>
-            <time className="font-caveat font-bold text-indigo-500 text-xl">2020</time>
+            <div className="font-bold text-black underline text-xl">Launch of Rail Madad</div>
+            <time className="font-caveat font-bold text-white text-xl">2020</time>
           </div>
           <div className="text-white">Rail Madad was officially launched in [Year], marking a new era in passenger services for Indian Railways. The application introduced a range of features aimed at simplifying the grievance redressal process, from easy submission of complaints to real-time tracking of their status. The response was overwhelming, with thousands of users joining the platform within the first month.
           </div>
@@ -69,8 +69,8 @@ const Section2 = () => {
         {/* Card */}
         <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-[#D88080] p-4 rounded border border-slate-200 shadow">
           <div className="flex items-center justify-between space-x-2 mb-1">
-            <div className="font-bold text-black text-xl">Major Updates and Improvements</div>
-            <time className="font-caveat font-bold text-indigo-500 text-xl">2021-2022</time>
+            <div className="font-bold text-black underline text-xl">Major Updates and Improvements</div>
+            <time className="font-caveat font-bold text-white text-xl">2021-2022</time>
           </div>
           <div className="text-white">Since its launch, Rail Madad has undergone several major updates, each designed to improve user experience and expand functionality. We listened to our users, incorporating their feedback to introduce new features such as multi-language support, offline complaint registration, and faster response times. Today, Rail Madad is trusted by millions for its efficiency and reliability.
           </div>
@@ -86,8 +86,8 @@ const Section2 = () => {
         {/* Card */}
         <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-[#D88080] p-4 rounded border border-slate-200 shadow">
           <div className="flex items-center justify-between space-x-2 mb-1">
-            <div className="font-bold text-black text-xl">Present Day</div>
-            <time className="font-caveat font-bold text-indigo-500 text-xl">2023</time>
+            <div className="font-bold text-black underline text-xl">Present Day</div>
+            <time className="font-caveat font-bold text-white text-xl">2023</time>
           </div>
           <div className="text-white">Today, Rail Madad stands as a testament to our commitment to providing exceptional service to railway passengers. With a user base that continues to grow, the app has successfully resolved over [number] of grievances and remains an essential tool for travelers across the country. Our focus remains on delivering solutions that make every journey smoother and more enjoyable.
           </div>
@@ -103,8 +103,8 @@ const Section2 = () => {
         {/* Card */}
         <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-[#D88080] p-4 rounded border border-slate-200 shadow">
           <div className="flex items-center justify-between space-x-2 mb-1">
-            <div className="font-bold text-black text-xl">Future Vision</div>
-            <time className="font-caveat font-bold text-indigo-500 text-xl">2024 & Beyond</time>
+            <div className="font-bold text-black underline text-xl">Future Vision</div>
+            <time className="font-caveat font-bold text-white text-xl">2024 & Beyond</time>
           </div>
           <div className="text-white">Looking ahead, Rail Madad is poised to introduce even more innovative features that will further enhance the passenger experience. We are exploring new ways to integrate advanced technologies, expand our service offerings, and continue building a platform that passengers can rely on. Your feedback is crucial in shaping the future of Rail Madad, and we encourage you to share your thoughts and suggestions with us.
           </div>
@@ -120,8 +120,8 @@ const Section2 = () => {
         {/* Card */}
         <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-[#D88080] p-4 rounded border border-slate-200 shadow">
           <div className="flex items-center justify-between space-x-2 mb-1">
-            <div className="font-bold text-black text-xl">Recognition</div>
-            <time className="font-caveat font-bold text-indigo-500 text-xl">2024</time>
+            <div className="font-bold text-black underline text-xl">Recognition</div>
+            <time className="font-caveat font-bold text-white text-xl">2024</time>
           </div>
           <div className="text-white">Rail Madad is the result of the hard work and dedication of a talented team, along with the support of our partners and the Indian Railways. We extend our heartfelt thanks to everyone who has contributed to making Rail Madad the success it is today. Together, we are committed to continuously improving and serving our passengers better.
           </div>
