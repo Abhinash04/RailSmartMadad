@@ -127,9 +127,11 @@ function Section6() {
                   <h5 className="text-white font-semibold">Try our RailBot it might help you solve your queries.</h5>
                 </div>
               </div>
-              <button type="button" className="btn btn-primary mt-[10px] border border-black">
+              <button type="button" className="btn btn-primary mt-[10px] border border-black" onClick={() => window.location.href = 'https://railbot-alpha.vercel.app/'}>
                 <div className="relative h-full">
-                  <div className="h-full text-wrap">RailBot <span className="animate-pulse">[सहायक]</span></div>
+                  <div className="h-full text-wrap">
+                    RailBot <span className="animate-pulse">[सहायक]</span>
+                  </div>
                 </div>
               </button>
             </div>
