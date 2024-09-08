@@ -10,12 +10,8 @@ export default function Profile() {
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 w-full max-w-[1200px] mx-auto py-12 px-4 md:px-6">
       <div className="flex flex-col gap-6 mt-[100px]">
         <div className="relative h-[600px] lg:h-auto">
-          <img
-            src={img}
-            alt="Profile"
-            width={600}
-            height={600}
-            className="w-full h-full object-cover rounded-xl"
+          <img src={img} alt="Profile"
+            className="w-full h-full flex object-cover rounded-xl"
             style={{ aspectRatio: "600/600", objectFit: "cover" }}
           />
           <div className="absolute top-4 right-4">
@@ -27,7 +23,7 @@ export default function Profile() {
               className="rounded-full p-2 bg-white shadow hover:shadow-md"
             >
               <FaCog className="h-6 w-6 text-gray-500" />
-              <span className="sr-only">Edit profile</span>
+              <span className="sr-only text-[#762626]">Edit profile</span>
             </button>
 
             {/* Dialog */}
@@ -40,8 +36,8 @@ export default function Profile() {
               >
                 <div className="bg-white rounded-lg shadow-lg w-full max-w-md">
                   <div className="p-4 border-b">
-                    <h2 id="dialog-title" className="text-lg font-semibold">
-                      Edit profile
+                    <h2 id="dialog-title" className="text-lg font-semibold text-[#762626]">
+                      EDIT PROFILE
                     </h2>
                     <p className="text-sm text-gray-600">
                       Make changes to your profile here. Click save when you're done.
@@ -51,32 +47,32 @@ export default function Profile() {
                     <div className="grid gap-4 py-4">
                       <div className="grid items-center grid-cols-4 gap-4">
                         <label htmlFor="username" className="text-right">
-                          Username
+                          USERNAME
                         </label>
                         <input
                           id="username"
-                          defaultValue="jdoe"
-                          className="col-span-3 border p-2 rounded"
+                          defaultValue="username"
+                          className="col-span-3 border p-2 rounded text-gray-600"
                         />
                       </div>
                       <div className="grid items-center grid-cols-4 gap-4">
                         <label htmlFor="phone" className="text-right">
-                          Phone
+                          PHONE
                         </label>
                         <input
                           id="phone"
-                          defaultValue="+1 (555) 555-5555"
-                          className="col-span-3 border p-2 rounded"
+                          defaultValue="+91 XXXXXXXXXX"
+                          className="col-span-3 border p-2 rounded text-gray-600"
                         />
                       </div>
                       <div className="grid items-center grid-cols-4 gap-4">
                         <label htmlFor="email" className="text-right">
-                          Email
+                          E-MAIL
                         </label>
                         <input
                           id="email"
-                          defaultValue="jdoe@example.com"
-                          className="col-span-3 border p-2 rounded"
+                          defaultValue="yourname@gmail.com"
+                          className="col-span-3 border p-2 rounded text-gray-600"
                         />
                       </div>
                     </div>
@@ -84,7 +80,7 @@ export default function Profile() {
                   <div className="flex justify-end p-4 border-t">
                     <button
                       onClick={() => setIsDialogOpen(false)}
-                      className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+                      className="bg-[#762626] text-white px-4 py-2 rounded hover:bg-[#D88080]"
                     >
                       Save changes
                     </button>
@@ -105,9 +101,9 @@ export default function Profile() {
               aria-controls="track-concern"
               id="track-concern-tab"
               onClick={() => setActiveTab("trackConcern")}
-              className={`tabs-trigger flex-1 p-4 border-b-2 ${activeTab === "trackConcern" ? "border-blue-500" : "border-gray-200 hover:border-gray-400"}`}
+              className={`tabs-trigger flex-1 p-4 border-b-2 ${activeTab === "trackConcern" ? "border-[#762626]" : "border-gray-200 hover:border-gray-400"}`}
             >
-              Track Your Concern
+              TRACK YOUR CONCERN
             </button>
             <button
               role="tab"
@@ -115,9 +111,9 @@ export default function Profile() {
               aria-controls="suggestion"
               id="suggestion-tab"
               onClick={() => setActiveTab("suggestion")}
-              className={`tabs-trigger flex-1 p-4 border-b-2 ${activeTab === "suggestion" ? "border-blue-500" : "border-gray-200 hover:border-gray-400"}`}
+              className={`tabs-trigger flex-1 p-4 border-b-2 ${activeTab === "suggestion" ? "border-[#762626]" : "border-gray-200 hover:border-gray-400"}`}
             >
-              Suggestion
+              SUGGESTION
             </button>
           </div>
           <div className="tabs-content">
@@ -130,12 +126,12 @@ export default function Profile() {
             >
               <div className="bg-white shadow-md rounded-lg">
                 <div className="p-4 border-b">
-                  <h3 className="text-lg font-semibold">Track Your Concern</h3>
+                  <h3 className="text-lg font-semibold">TRACK YOUR CONCERN</h3>
                   <p className="text-sm text-gray-600">Fill out the form below to track your concern.</p>
                 </div>
                 <div className="p-4 space-y-4">
                   <div className="space-y-2">
-                    <label htmlFor="concern-title">Concern Title</label>
+                    <label htmlFor="concern-title">CONCERN TITLE</label>
                     <input
                       id="concern-title"
                       placeholder="Enter your concern title"
@@ -143,7 +139,7 @@ export default function Profile() {
                     />
                   </div>
                   <div className="space-y-2">
-                    <label htmlFor="concern-description">Concern Description</label>
+                    <label htmlFor="concern-description">CONCERN DESCRIPTION</label>
                     <textarea
                       id="concern-description"
                       placeholder="Describe your concern in detail"
@@ -151,7 +147,7 @@ export default function Profile() {
                     />
                   </div>
                   <div className="space-y-2">
-                    <label htmlFor="concern-status">Concern Status</label>
+                    <label htmlFor="concern-status">CONCERN STATUS</label>
                     <select id="concern-status" className="w-full border p-2 rounded">
                       <option value="open">Open</option>
                       <option value="in-progress">In Progress</option>
@@ -159,9 +155,9 @@ export default function Profile() {
                     </select>
                   </div>
                 </div>
-                <div className="p-4 border-t">
-                <button className="bg-[#762626] text-white w-full px-4 py-2 rounded hover:bg-[#D88080]">
-                    Submit
+                <div className="p-4 border-t flex justify-center">
+                  <button className="bg-[#762626] text-white px-4 py-2 w-[300px] rounded hover:bg-[#D88080]">
+                    SUBMIT
                   </button>
                 </div>
               </div>
@@ -175,12 +171,12 @@ export default function Profile() {
             >
               <div className="bg-white shadow-md rounded-lg">
                 <div className="p-4 border-b">
-                  <h3 className="text-lg font-semibold">Suggestion</h3>
+                  <h3 className="text-lg font-semibold">SUGGESTION</h3>
                   <p className="text-sm text-gray-600">Fill out the form below to provide a suggestion.</p>
                 </div>
                 <div className="p-4 space-y-4">
                   <div className="space-y-2">
-                    <label htmlFor="suggestion-title">Suggestion Title</label>
+                    <label htmlFor="suggestion-title">SUGGESTION TITLE</label>
                     <input
                       id="suggestion-title"
                       placeholder="Enter your suggestion title"
@@ -188,7 +184,7 @@ export default function Profile() {
                     />
                   </div>
                   <div className="space-y-2">
-                    <label htmlFor="suggestion-description">Suggestion Description</label>
+                    <label htmlFor="suggestion-description">SUGGESTION DESCRIPTION</label>
                     <textarea
                       id="suggestion-description"
                       placeholder="Describe your suggestion in detail"
@@ -196,7 +192,7 @@ export default function Profile() {
                     />
                   </div>
                   <div className="space-y-2">
-                    <label htmlFor="suggestion-priority">Suggestion Priority</label>
+                    <label htmlFor="suggestion-priority">SUGGESTION PRIORITY</label>
                     <select id="suggestion-priority" className="w-full border p-2 rounded">
                       <option value="low">Low</option>
                       <option value="medium">Medium</option>
@@ -204,9 +200,9 @@ export default function Profile() {
                     </select>
                   </div>
                 </div>
-                <div className="p-4 border-t">
-                  <button className="bg-[#762626] text-white w-full px-4 py-2 rounded hover:bg-[#D88080]">
-                    Submit
+                <div className="p-4 border-t flex justify-center">
+                  <button className="bg-[#762626] text-white px-4 py-2 w-[300px] rounded hover:bg-[#D88080]">
+                    SUBMIT
                   </button>
                 </div>
               </div>
