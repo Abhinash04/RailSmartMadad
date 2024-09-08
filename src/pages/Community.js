@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsUp, faThumbsDown, faUser } from '@fortawesome/free-solid-svg-icons';
+import Dashboard from '../components/Dashboard';
+import ScrollToTop from '../components/ScrollToTop';
+import ChatBotIcon from '../components/ChatBotIcon';
 
 const Community = () => {
   const [threads, setThreads] = useState([
@@ -270,8 +273,9 @@ const Community = () => {
         </div>
         <main className="flex-1 overflow-y-auto">
           <div className="container mx-auto mt-4">
+            <Dashboard/>
             {threads.map((thread) => (
-              <div key={thread.id} className="bg-background rounded-lg shadow-sm mb-6" style={{ border: '2px solid #762626' }}>
+              <div key={thread.id} className="bg-background rounded-lg shadow-sm mb-6 mt-4" style={{ border: '2px solid #762626' }}>
                 <div className="p-6">
                   <div className="flex items-start mb-4">
                     <div className="w-10 h-10 mr-4">
@@ -380,6 +384,8 @@ const Community = () => {
                 Submit Question
               </button>
             </div>
+            <ScrollToTop />
+            <ChatBotIcon />
           </div>
         </main>
       </div>
