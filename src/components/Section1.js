@@ -19,7 +19,7 @@ const Section1 = () => {
           </p>
           <div className="flex items-center md:justify-center lg:justify-start">
             <a
-              href="/"
+              href="#section3"
               className="btn btn-primary inline-flex items-center justify-center px-6 mr-6 bg-[#762626]"
             >
               File Your Complaint

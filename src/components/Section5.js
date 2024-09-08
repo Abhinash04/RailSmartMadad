@@ -11,7 +11,7 @@ const Section5 = () => {
       </div>
       <div className='container flex items-center md:justify-center lg:justify-start'>
         <a href="/" className="btn btn-primary text-center max-w-[300px] mx-auto">Add a Review</a>
-        <a href="/" className='btn btn-primary text-center max-w-[300px] mx-auto'>Community Page</a>
+        <a href="/Community" className='btn btn-primary text-center max-w-[300px] mx-auto'>Community Page</a>
       </div>
     </div>
   )

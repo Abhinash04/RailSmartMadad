@@ -21,85 +21,114 @@ export const UserManual = () => {
 
       <DragCloseDrawer open={open} setOpen={setOpen}>
         <div className="mx-auto max-w-2xl space-y-4 text-white">
-        <h2 className="text-4xl font-bold text-[#762626] mt-5">
+          
+          <h2 className="text-4xl font-bold text-[#762626] mt-5">
             Welcome To Rail Madad Platform
           </h2>
-          <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minima
-            laboriosam quos deleniti veniam est culpa quis nihil enim suscipit
-            nulla aliquid iure optio quaerat deserunt, molestias quasi facere
-            aut quidem reprehenderit maiores.
+        
+          <p className="mb-4">
+            Welcome to Rail Madad, a dedicated platform designed by Indian Railways to address and resolve grievances efficiently. This manual will guide you through the various features and functionalities of the Rail Madad web application to help you navigate and utilize the platform effectively.
           </p>
-          <p>
-            Laudantium corrupti neque rerum labore tempore sapiente. Quos, nobis
-            dolores. Esse fuga, cupiditate rerum soluta magni numquam nemo
-            aliquid voluptate similique deserunt!
+          
+          <h3 className="text-xl font-semibold mb-2">1. Introduction to Rail Madad</h3>
+          <p className="mb-4">
+            Rail Madad is an initiative aimed at simplifying the process of filing and managing complaints related to railway services. By using this platform, passengers can submit their grievances, track the status of their complaints, and receive timely updates on actions taken. The system ensures that complaints are directed to the appropriate authorities for swift resolution.
           </p>
-          <p>
-            Rerum inventore provident laboriosam quo facilis nisi voluptatem
-            quam maxime pariatur. Velit reiciendis quasi sit magni numquam quos
-            itaque ratione, fugit adipisci atque est, tenetur officiis explicabo
-            id molestiae aperiam? Expedita quidem inventore magni? Doloremque
-            architecto mollitia, dicta, fugit minima velit explicabo sapiente
-            beatae fugiat accusamus voluptatum, error voluptatem ab asperiores
-            quo modi possimus.
+          
+          <h3 className="text-xl font-semibold mb-2">2. Getting Started with Rail Madad</h3>
+          <p className="mb-4">
+            To start using Rail Madad, you need to access the web application via your browser or the mobile app. If you are a new user, follow these steps:
           </p>
-          <p>
-            Sit laborum molestias ex quisquam molestiae cum fugiat praesentium!
-            Consequatur excepturi quod nemo harum laudantium accusantium nisi
-            odio?
+          <ul className="list-disc mb-4 ml-6">
+            <li>Visit the Rail Madad website or download the mobile app from the app store.</li>
+            <li>If you are using the web application, click on the 'Register' button to create a new account. Provide your email address, phone number, and create a secure password.</li>
+            <li>For mobile app users, follow the on-screen instructions to complete the registration process.</li>
+            <li>Once registered, log in to your account using your credentials.</li>
+          </ul>
+
+          <h3 className="text-xl font-semibold mb-2">3. Filing a Complaint</h3>
+          <p className="mb-4">
+            To file a complaint, follow these steps:
           </p>
-          <p>
-            Deleniti, animi maiores officiis quos eaque neque voluptas omnis
-            quia error a dolores, pariatur ad obcaecati, vitae nisi perspiciatis
-            fugiat sapiente accusantium. Magnam, a nihil soluta eos vero illo ab
-            sequi, dolores culpa, quia hic?
+          <ul className="list-disc mb-4 ml-6">
+            <li>Log in to your Rail Madad account.</li>
+            <li>Navigate to the 'Submit Complaint' section, usually found in the main menu.</li>
+            <li>Fill out the complaint form with the necessary details:
+              <ul className="list-disc mb-4 ml-6">
+                <li><strong>Train Number:</strong> Enter the train number associated with your complaint.</li>
+                <li><strong>Date of Travel:</strong> Specify the date on which you traveled.</li>
+                <li><strong>Complaint Description:</strong> Provide a detailed description of the issue you faced, including any relevant facts and observations.</li>
+              </ul>
+            </li>
+            <li>Attach any supporting documents or images if necessary.</li>
+            <li>Review the information provided and submit the complaint.</li>
+            <li>You will receive a unique complaint ID, which you can use to track the status of your complaint.</li>
+          </ul>
+
+          <h3 className="text-xl font-semibold mb-2">4. Tracking Your Complaint</h3>
+          <p className="mb-4">
+            After submitting your complaint, you can track its progress by:
           </p>
-          <p>
-            Eos in saepe dignissimos tempore. Laudantium cumque eius, et
-            distinctio illum magnam molestiae doloribus. Fugiat voluptatum
-            necessitatibus vero eligendi quae, similique non debitis qui veniam
-            praesentium rerum labore libero architecto tempore nesciunt est
-            atque animi voluptatibus. Aliquam repellendus provident tempora
-            sequi officia sint voluptates eaque minima suscipit, cum maiores
-            quos possimus. Vero ex porro asperiores voluptas voluptatibus?
+          <ul className="list-disc mb-4 ml-6">
+            <li>Logging in to your Rail Madad account.</li>
+            <li>Going to the 'Track Complaint' section.</li>
+            <li>Entering the complaint ID you received after submission.</li>
+            <li>Viewing the current status of your complaint, including any updates or actions taken by the railway authorities.</li>
+          </ul>
+
+          <h3 className="text-xl font-semibold mb-2">5. Receiving Updates</h3>
+          <p className="mb-4">
+            Rail Madad keeps you informed about the status of your complaint through various channels:
           </p>
-          <p>
-            Debitis eos aut ullam odit fuga. Numquam deleniti libero quas sunt?
-            Exercitationem earum odio aliquam necessitatibus est accusamus
-            consequuntur nisi natus dolore libero voluptatibus odit doloribus
-            laudantium iure, dicta placeat molestias porro quasi amet? Sint,
-            reiciendis tenetur distinctio eaque delectus, maiores, nihil
-            voluptas dolorem necessitatibus consequatur aliquid?
+          <ul className="list-disc mb-4 ml-6">
+            <li><strong>SMS Notifications:</strong> You will receive SMS updates regarding the progress of your complaint and any actions taken.</li>
+            <li><strong>Email Notifications:</strong> If you have provided an email address, you will also receive email updates.</li>
+            <li><strong>In-App Notifications:</strong> Check the Rail Madad app or website for real-time updates and messages.</li>
+          </ul>
+
+          <h3 className="text-xl font-semibold mb-2">6. Resolving Complaints</h3>
+          <p className="mb-4">
+            Once your complaint has been reviewed and actioned, you will receive a resolution notification. The complaint status will be updated to reflect the outcome, which could include:
           </p>
-          <p>
-            Sunt ex, cum culpa vel odio dicta expedita omnis amet debitis
-            inventore necessitatibus quaerat est molestias delectus. Dolorem,
-            eius? Quae, itaque ipsa incidunt nobis repellendus, sunt dolorum
-            aliquam ad culpa repudiandae impedit omnis, expedita illum voluptas
-            delectus similique ducimus saepe pariatur. Molestias similique quam
-            dolore provident doloremque maiores autem ab blanditiis voluptatum
-            dignissimos culpa sed nesciunt laboriosam, in dicta consectetur.
+          <ul className="list-disc mb-4 ml-6">
+            <li><strong>Resolved:</strong> The issue has been addressed, and appropriate measures have been taken.</li>
+            <li><strong>Pending:</strong> Further action is required, and your complaint is still under review.</li>
+            <li><strong>Rejected:</strong> Your complaint could not be processed, usually due to insufficient information or it falling outside the scope of the complaint system.</li>
+          </ul>
+
+          <h3 className="text-xl font-semibold mb-2">7. Additional Features</h3>
+          <p className="mb-4">
+            Rail Madad offers additional features to enhance your experience:
           </p>
-          <p>
-            Voluptates ea, aspernatur possimus, iusto temporibus non laudantium
-            neque molestias rem tempore eligendi earum nisi dolorum asperiores
-            at rerum!
+          <ul className="list-disc mb-4 ml-6">
+            <li><strong>Train Status Updates:</strong> Check real-time updates on train arrivals, departures, delays, and cancellations.</li>
+            <li><strong>Station Information:</strong> Access information about station facilities, services, and contact details.</li>
+            <li><strong>Help and Support:</strong> Reach out to customer support for any queries or issues using the contact options provided in the application.</li>
+          </ul>
+
+          <h3 className="text-xl font-semibold mb-2">8. Contacting Support</h3>
+          <p className="mb-4">
+            If you need further assistance or have any questions, you can contact Rail Madad support through:
           </p>
-          <p>
-            Eaque totam error quia, ut eius perspiciatis unde velit temporibus
-            mollitia. Aperiam ad tempora aliquam est molestias commodi
-            cupiditate quos impedit nostrum accusantium quo fugit eveniet
-            temporibus quam cumque autem porro, id ut debitis itaque et nemo
-            exercitationem voluptatibus? Aspernatur corrupti quas iusto dolores
-            nemo pariatur debitis quae dolorem! Nemo, eius? Dolorem quam nemo
-            magnam ratione deserunt aperiam. Voluptatum ipsa, molestias
-            aspernatur quas distinctio numquam qui laboriosam id ab totam
-            commodi laborum tempora error natus vitae eligendi reiciendis
-            maiores ex illo? Tempore at animi earum vitae enim sunt,
-            dignissimos, mollitia corrupti officia obcaecati error iure vero
-            repudiandae nihil magni molestias quibusdam dolorem aperiam modi.
-            Harum, fugit.
+          <ul className="list-disc mb-4 ml-6">
+            <li><strong>Phone:</strong> Call the customer support helpline provided on the Rail Madad website or app.</li>
+            <li><strong>Email:</strong> Send an email to the support team using the email address listed on the platform.</li>
+            <li><strong>Online Chat:</strong> Use the live chat feature on the Rail Madad website or app for real-time assistance.</li>
+          </ul>
+
+          <h3 className="text-xl font-semibold mb-2">9. Troubleshooting</h3>
+          <p className="mb-4">
+            If you encounter any issues while using Rail Madad, consider the following troubleshooting steps:
+          </p>
+          <ul className="list-disc mb-4 ml-6">
+            <li><strong>Check Internet Connection:</strong> Ensure you have a stable internet connection.</li>
+            <li><strong>Clear Cache:</strong> Clear your browser cache or app cache if you experience loading issues.</li>
+            <li><strong>Update Application:</strong> Ensure you are using the latest version of the Rail Madad app.</li>
+            <li><strong>Contact Support:</strong> Reach out to customer support if the issue persists.</li>
+          </ul>
+
+          <p className="mb-4">
+            Thank you for using Rail Madad. We are committed to improving your railway travel experience and ensuring that your grievances are addressed promptly and efficiently.
           </p>
           {/* Add as many paragraphs or content as needed */}
         </div>
