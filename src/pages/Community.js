@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faThumbsUp, faThumbsDown, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faThumbsUp, faThumbsDown, faUser, faThumbtack } from '@fortawesome/free-solid-svg-icons';
 import Dashboard from '../components/Dashboard';
 import ScrollToTop from '../components/ScrollToTop';
 import ChatBotIcon from '../components/ChatBotIcon';
@@ -126,23 +126,26 @@ const Community = () => {
   const [newReply, setNewReply] = useState("");
   const [currentThreadId, setCurrentThreadId] = useState(null);
 
+
   const handleSubmitThread = () => {
-    if (newThread.trim() !== "") {
-      setThreads([
-        ...threads,
-        {
-          id: threads.length + 1,
-          title: newThread,
-          author: {
-            name: "You",
-            avatar: <FontAwesomeIcon icon={faUser} />,
-          },
-          createdAt: new Date().toISOString(),
-          replies: [],
-        },
-      ]);
-      setNewThread("");
+    if (newThread.trim() === "") {
+      alert("Thread content cannot be empty");
+      return;
     }
+
+    const newThreadObj = {
+      id: threads.length + 1,
+      title: newThread,
+      author: {
+        name: "You",
+        avatar: <FontAwesomeIcon icon={faUser} />,
+      },
+      createdAt: new Date().toISOString(),
+      replies: [],
+    };
+
+    setThreads([...threads, newThreadObj]);
+    setNewThread("");
   };
 
   const handleReply = (threadId) => {
@@ -150,33 +153,37 @@ const Community = () => {
   };
 
   const handleSubmitReply = () => {
-    if (newReply.trim() !== "") {
-      const updatedThreads = threads.map((thread) => {
-        if (thread.id === currentThreadId) {
-          return {
-            ...thread,
-            replies: [
-              ...thread.replies,
-              {
-                id: thread.replies.length + 1,
-                content: newReply,
-                author: {
-                  name: "You",
-                  avatar: <FontAwesomeIcon icon={faUser} />,
-                },
-                createdAt: new Date().toISOString(),
-                upvotes: 0,
-                downvotes: 0,
-              },
-            ],
-          };
-        }
-        return thread;
-      });
-      setThreads(updatedThreads);
-      setNewReply("");
-      setCurrentThreadId(null);
+    if (newReply.trim() === "") {
+      alert("Reply content cannot be empty");
+      return;
     }
+
+    const updatedThreads = threads.map((thread) => {
+      if (thread.id === currentThreadId) {
+        return {
+          ...thread,
+          replies: [
+            ...thread.replies,
+            {
+              id: thread.replies.length + 1,
+              content: newReply,
+              author: {
+                name: "You",
+                avatar: <FontAwesomeIcon icon={faUser} />,
+              },
+              createdAt: new Date().toISOString(),
+              upvotes: 0,
+              downvotes: 0,
+            },
+          ],
+        };
+      }
+      return thread;
+    });
+
+    setThreads(updatedThreads);
+    setNewReply("");
+    setCurrentThreadId(null);
   };
 
   const handleUpvote = (threadId, replyId) => {
@@ -221,31 +228,6 @@ const Community = () => {
     setThreads(updatedThreads);
   };
 
-  const handleMarkBestAnswer = (threadId, replyId) => {
-    const updatedThreads = threads.map((thread) => {
-      if (thread.id === threadId) {
-        return {
-          ...thread,
-          replies: thread.replies.map((reply) => {
-            if (reply.id === replyId) {
-              return {
-                ...reply,
-                isBestAnswer: true,
-              };
-            } else {
-              return {
-                ...reply,
-                isBestAnswer: false,
-              };
-            }
-          }),
-        };
-      }
-      return thread;
-    });
-    setThreads(updatedThreads);
-  };
-
   const handlePinBestAnswer = (threadId, replyId) => {
     const updatedThreads = threads.map((thread) => {
       if (thread.id === threadId) {
@@ -255,7 +237,7 @@ const Community = () => {
             ...thread.replies.map((reply) => ({
               ...reply,
               isBestAnswer: reply.id === replyId,
-            }))
+            })),
           ].sort((a, b) => b.isBestAnswer - a.isBestAnswer),
         };
       }
@@ -327,10 +309,10 @@ const Community = () => {
                         ) : (
                           <button
                             className="btn btn-primary"
-                            onClick={() => handleMarkBestAnswer(thread.id, reply.id)}
+                            onClick={() => handlePinBestAnswer(thread.id, reply.id)}
                             style={{ backgroundColor: '#762626', marginLeft: '20px' }}
                           >
-                            Mark as Best Answer
+                            <FontAwesomeIcon icon={faThumbtack} />
                           </button>
                         )}
                       </div>
