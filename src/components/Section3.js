@@ -1,5 +1,6 @@
 import React from 'react'
-import VerticalTabs from './sec3/Verticaltabs'
+import VerticalTabs from './Verticaltabs'
+
 
 const Section3 = () => {
   return (
