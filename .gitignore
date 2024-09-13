@@ -7,6 +7,9 @@
 *.log
 *.cache
 
+# environmental variables
+.env
+
 # testing
 /coverage
 

@@ -11,7 +11,7 @@ import Community from "./pages/Community"
 import { useState } from "react";
 
 function App() {
-  const [name] = useState("");
+  const [name, setName] = useState("");
   return (
     <Routes>
       <Route path="/" element={<Layout name={name} />}>

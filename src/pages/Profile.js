@@ -1,10 +1,84 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import img from "../assets/images/profileimg.png";
+import img1 from "../assets/images/User2.png";
 import { FaCog } from "react-icons/fa";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import Loader from "../components/Loader";
+import { profileValidation } from "../helper/validate";
+import convertToBase64 from "../helper/convert";
+import { useAuthStore } from '../store/store';
+import useFetch from '../hooks/fetch.hook';
+import { updateUser } from '../helper/helper';
+import { toast } from "react-toastify";
 
 export default function Profile() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [activeTab, setActiveTab] = useState("trackConcern");
+  const [file, setFile] = useState();
+  const { auth } = useAuthStore(state => ({
+    auth: state.auth
+  }));
+  
+  const [loading, setLoading] = useState(false);
+  const [{ isLoading: fetchLoading, apiData, serverError }] = useFetch(auth.username ? `user/${auth.username}` : null);
+  const fileInputRef = useRef(null);
+  
+  const formik = useFormik({
+    initialValues: {
+      username: apiData?.username || '',
+      firstname: apiData?.firstname || '',
+      lastname: apiData?.lastname || '',
+      email: apiData?.email || '',
+      phNo: apiData?.phNo || '',
+      address: apiData?.address || '',
+      profile: apiData?.profile || ''
+    },
+    validationSchema: Yup.object({
+      username: Yup.string().required("Full Name is required"),
+      email: Yup.string().email("Invalid email address").required("Required"),
+      phNo: Yup.string().required("Phone Number is required"),
+    }),
+    enableReinitialize: true,
+    validate: profileValidation,
+    validateOnBlur: false,
+    validateOnChange: false,
+    onSubmit: async (values) => {
+      console.log('Form is submitting...'); 
+      values.profile = file || apiData.profile || '';
+      console.log('Updated values:', values);
+      try {
+        await updateUser(values);
+        toast.success('Updated Successfully');
+      } catch (error) {
+        console.error("Error updating profile:", error);
+        toast.error("Could not update!");
+      }
+    }
+  });
+  
+  const onUpload = async (e) => {
+    const selectedFile = e.target.files[0];
+    if (!selectedFile) {
+      console.error('No file selected');
+      return;
+    }
+
+    try {
+      const base64 = await convertToBase64(selectedFile);
+      setFile(base64);
+    } catch (error) {
+      console.error('Error converting file to base64:', error);
+    }
+  };
+
+  if (loading) return <Loader />; // Display loader if form submission is in progress
+  if (fetchLoading) return <h1 className="text-2xl font-bold">Loading...</h1>;
+  if (serverError) return <h1 className="text-xl text-red-500">{serverError.message}</h1>; 
+
+  const handleProfileImageClick = () => {
+    fileInputRef.current.click();
+  };
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 w-full max-w-[1200px] mx-auto py-12 px-4 md:px-6">
@@ -43,15 +117,35 @@ export default function Profile() {
                       Make changes to your profile here. Click save when you're done.
                     </p>
                   </div>
-                  <div className="p-4">
+                  <form onSubmit={formik.handleSubmit}>
+                    <div className="p-3">
+                      <div className="flex flex-col items-center">
+                        <img
+                          src={apiData?.profile || file || img1}
+                          alt="Profile"
+                          className="w-32 h-32 rounded-full object-cover cursor-pointer"
+                          onClick={handleProfileImageClick}
+                        />
+                        <input
+                          type="file"
+                          id="profile"
+                          ref={fileInputRef}
+                          className="hidden"
+                          onChange={onUpload}
+                        />
+                        <button type="button" className="text-sm underline mb-2" onClick={handleProfileImageClick}>Edit Image ✏️</button>
+                      </div>
+                    </div>
+                    
                     <div className="grid gap-4 py-4">
                       <div className="grid items-center grid-cols-4 gap-4">
                         <label htmlFor="username" className="text-right">
                           USERNAME
                         </label>
                         <input
+                          {...formik.getFieldProps('username')}
+                          type="text"
                           id="username"
-                          defaultValue="username"
                           className="col-span-3 border p-2 rounded text-gray-600"
                         />
                       </div>
@@ -60,8 +154,9 @@ export default function Profile() {
                           PHONE
                         </label>
                         <input
+                          {...formik.getFieldProps('phNo')} 
+                          type="text"
                           id="phone"
-                          defaultValue="+91 XXXXXXXXXX"
                           className="col-span-3 border p-2 rounded text-gray-600"
                         />
                       </div>
@@ -70,21 +165,24 @@ export default function Profile() {
                           E-MAIL
                         </label>
                         <input
+                          {...formik.getFieldProps('email')}
+                          type="text"
                           id="email"
-                          defaultValue="yourname@gmail.com"
                           className="col-span-3 border p-2 rounded text-gray-600"
                         />
                       </div>
                     </div>
-                  </div>
-                  <div className="flex justify-end p-4 border-t">
-                    <button
-                      onClick={() => setIsDialogOpen(false)}
-                      className="bg-[#762626] text-white px-4 py-2 rounded hover:bg-[#D88080]"
-                    >
-                      Save changes
-                    </button>
-                  </div>
+                    
+                    <div className="flex justify-end p-4 border-t">
+                      <button
+                        type="submit"
+                        //onClick={() => setIsDialogOpen(false)}
+                        className="bg-[#762626] text-white px-4 py-2 rounded hover:bg-[#D88080]"
+                      >
+                        Save changes
+                      </button>
+                    </div>
+                  </form>
                 </div>
               </div>
             )}
