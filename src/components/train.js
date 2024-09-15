@@ -1,63 +1,13 @@
 import React, { useState, useRef } from 'react';
-import { 
-  Button, TextField, Grid, Box, Typography, 
-  Autocomplete, OutlinedInput, createTheme, ThemeProvider 
-} from '@mui/material';
-import { styled } from '@mui/material/styles';
 import { addDoc, collection } from 'firebase/firestore';
 import { ref } from "firebase/storage";
 // import { uploadString } from "firebase/storage";
-
 import { db, storage } from '../firebase';
 import { updateDoc } from 'firebase/firestore';
 import { getDownloadURL } from 'firebase/storage';
 import { doc ,serverTimestamp } from 'firebase/firestore';
 import { uploadBytes } from 'firebase/storage';
 
-// Custom styled components
-const WhiteOutlinedInput = styled(OutlinedInput)(({ theme }) => ({
-  '& .MuiOutlinedInput-notchedOutline': {
-    borderColor: 'black',
-  },
-  '&:hover .MuiOutlinedInput-notchedOutline': {
-    borderColor: 'black',
-  },
-  '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-    borderColor: 'black',
-  },
-  '& input': {
-    color: 'black',
-  },
-}));
-
-const WhiteTextField = styled(TextField)(({ theme }) => ({
-  '& .MuiOutlinedInput-notchedOutline': {
-    borderColor: 'black',
-  },
-  '&:hover .MuiOutlinedInput-notchedOutline': {
-    borderColor: 'black',
-  },
-  '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-    borderColor: 'black',
-  },
-  '& input': {
-    color: 'black',
-  },
-}));
-
-const theme = createTheme({
-  palette: {
-    background: {
-      default: "#000000",
-    },
-    primary: {
-      main: "#000000",
-    },
-    secondary: {
-      main: "#000000",
-    },
-  },
-});
 const JourneyOptions = [
   "PNR ", "UTS", 
 ];
@@ -1173,9 +1123,6 @@ const trainOptions = [
   "12794 -> SC-TPTY SF EXP [SUPERFAST]",
   "12795 -> TVC-SC SF EXPRESS [SUPERFAST]",
   "12796 -> SC-TVC SF EXPRESS [SUPERFAST]",
-
-
-
 ]
 
 export default function Train() {
@@ -1264,122 +1211,140 @@ export default function Train() {
   };
 
   return (
-    <ThemeProvider theme={theme}>
-      <Grid container component="main" sx={{ height: "100vh", placeItems: "center" }}>
-        <Box sx={{ width: "650px", display: "flex", flexDirection: "column", alignItems: "center", padding: "10px" }}>
-          <form onSubmit={handleSubmit} noValidate>
-            <Grid container spacing={2}>
-              <Grid item xs={12}>
-                <Grid item xs={12} sm={6}>
-                  <Typography sx={{ color: "#020617" }}>
-                    Journey Details <span className="text-red-800">*</span>
-                  </Typography>
-                  <Autocomplete
-                    options={JourneyOptions}
-                    renderInput={(params) => <WhiteTextField {...params} placeholder="--select--" fullWidth />}
-                    onChange={(event, newValue) => handleInputChange({ target: { name: 'journey', value: newValue } })}
-                  />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  <Typography sx={{ color: "#020617" }} disabled={isTrainNumberDisabled}>
-                    Train Number <span className="text-red-800"></span>
-                  </Typography>
-                  <Autocomplete
-                    disabled={isTrainNumberDisabled}
-                    options={trainOptions}
-                    renderInput={(params) => <WhiteTextField {...params} placeholder="--select--" fullWidth />}
-                    onChange={(event, newValue) => handleInputChange({ target: { name: 'UTSDetails', value: newValue } })}
-                  />
-                </Grid>
-                <Grid item xs={12} sm={6} className="mt-2">
-                  <Typography sx={{ color: "#020617" }}>
-                    PNR/UTS Number
-                  </Typography>
-                  <WhiteOutlinedInput
-                    name="PNRUTS"
-                    type="number"
-                    fullWidth
-                    value={formData.PNRUTS}
-                    onChange={handleInputChange}
-                  />
-                </Grid>
-              </Grid>
-  
-              <Grid item xs={12} sm={6}>
-                <Typography sx={{ color: "#020617" }}>
-                  Type <span className="text-red-800">*</span>
-                </Typography>
-                <Autocomplete
-                  options={grievanceOptions}
-                  renderInput={(params) => <WhiteTextField {...params} placeholder="--select--" fullWidth />}
-                  onChange={(event, newValue) => handleInputChange({ target: { name: 'grievance', value: newValue } })}
-                />
-              </Grid>
-  
-              <Grid item xs={12} sm={6}>
-                <Typography sx={{ color: "#020617" }}>
-                  Sub Type <span className="text-red-800">*</span>
-                </Typography>
-                <Autocomplete
-                  options={subTypeOptions}
-                  renderInput={(params) => <WhiteTextField {...params} fullWidth />}
-                  onChange={(event, newValue) => handleInputChange({ target: { name: 'subType', value: newValue } })}
-                />
-              </Grid>
-  
-              <Grid item xs={12} sm={6}>
-                <Typography sx={{ color: "#020617" }}>
-                  Incident Date <span className="text-red-800">*</span>
-                </Typography>
-                <WhiteTextField
-                  type="date"
-                  fullWidth
-                  name="incidentDate"
-                  value={formData.incidentDate}
-                  onChange={handleInputChange}
-                />
-              </Grid>
-  
-              <Grid item xs={12} sm={6}>
-                <Typography sx={{ color: "#020617" }}>
-                  Upload File <span className="text-red-800">*</span>
-                </Typography>
-                <WhiteTextField
-                  type="file"
-                  fullWidth
-                  onChange={handleFileChange}
-                  inputRef={filePickerRef}
-                />
-              </Grid>
-  
-              <Grid item xs={12} sm={6}>
-                <Typography sx={{ color: "#020617" }}>
-                  Phone Number
-                </Typography>
-                <WhiteOutlinedInput
-                  name="mobileNumber"
-                  type="number"
-                  fullWidth
-                  value={formData.mobileNumber}
-                  onChange={handleInputChange}
-                />
-              </Grid>
-  
-              <Grid item xs={12} sm={6} container alignItems="center">
-                <Button
-                  type="submit"
-                  variant="contained"
-                  sx={{ backgroundColor: "#75002b", color: "white" }}
-                  disabled={loading}
-                  className="rounded-2xl"
-                >
-                  {loading ? "Submitting..." : "Submit"}
-                </Button>
-              </Grid>
-            </Grid>
-          </form>
-        </Box>
-      </Grid>
-    </ThemeProvider>
+    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+      <div className="w-full max-w-5xl p-8 bg-white rounded-lg shadow-md">
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label className="block text-sm font-medium text-black">
+                Journey Details <span className="text-red-600">*</span>
+              </label>
+              <select 
+                className="mt-1 block w-full h-[40px] rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 bg-gray-700"
+                onChange={(e) => handleInputChange({ target: { name: 'journey', value: e.target.value } })}
+              >
+                <option value="">--select--</option>
+                {JourneyOptions.map((option, index) => (
+                  <option key={index} value={option}>{option}</option>
+                ))}
+              </select>
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-black">
+                Train No. <span className="text-red-600">*</span>
+              </label>
+              <select 
+                className="mt-1 block w-full h-[40px] rounded-md border-gray-300 shadow-sm focus:border-indigo-300 bg-red-950 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 bg-gray-700"
+                onChange={(e) => handleInputChange({ target: { name: 'UTSDetails', value: e.target.value } })}
+                disabled={isTrainNumberDisabled}
+              >
+                <option value="">--select--</option>
+                {trainOptions.map((option, index) => (
+                  <option key={index} value={option}>{option}</option>
+                ))}
+              </select>
+            </div>
+
+            {/* <div>
+              <label className="block text-sm font-medium text-gray-700">
+                PNR/UTS
+              </label>
+              <input
+                type="number"
+                name="PNRUTS"
+                value={formData.PNRUTS}
+                onChange={handleInputChange}
+                className="mt-1 block w-full rounded-md bg-red-950 border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+              />
+            </div> */}
+
+            <div>
+              <label className="block text-sm font-medium text-black">
+                Type <span className="text-red-600">*</span>
+              </label>
+              <select 
+                className="mt-1 block w-full h-[40px] rounded-md bg-red-950 border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 bg-gray-700"
+                onChange={(e) => handleInputChange({ target: { name: 'grievance', value: e.target.value } })}
+              >
+                <option value="">--select--</option>
+                {grievanceOptions.map((option, index) => (
+                  <option key={index} value={option}>{option}</option>
+                ))}
+              </select>
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-black">
+                Sub Type <span className="text-red-600">*</span>
+              </label>
+              <select 
+                className="mt-1 block w-full h-[40px] rounded-md bg-red-950 border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 bg-gray-700"
+                onChange={(e) => handleInputChange({ target: { name: 'subType', value: e.target.value } })}
+              >
+                <option value="">--select--</option>
+                {subTypeOptions.map((option, index) => (
+                  <option key={index} value={option}>{option}</option>
+                ))}
+              </select>
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-black">
+                Incident Date <span className="text-red-600">*</span>
+              </label>
+              <input
+                type="date"
+                name="incidentDate"
+                value={formData.incidentDate}
+                onChange={handleInputChange}
+                className="mt-1 block w-full h-[40px] bg-red-950 rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 bg-gray-700"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-black">
+                Upload File <span className="text-red-600">*</span>
+              </label>
+              <input
+                type="file"
+                onChange={handleFileChange}
+                ref={filePickerRef}
+                className="mt-1 block w-full text-sm text-gray-500
+                  file:mr-4 file:py-2 file:px-4
+                  file:rounded-full file:border-0
+                  file:text-sm file:font-semibold
+                  file:bg-[#762626] file:text-white
+                  hover:file:bg-[#D88080]"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-black">
+                Phone No.
+              </label>
+              <input
+                type="number"
+                name="mobileNumber"
+                placeholder='phone number'
+                value={formData.mobileNumber}
+                onChange={handleInputChange}
+                className="mt-1 block w-full h-[40px] rounded-md bg-red-950 border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 bg-gray-700"
+              />
+            </div>
+          </div>
+
+          <div>
+            <button
+              type="submit"
+              className="w-full md:w-auto px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-[#762626] hover:bg-[#D88080] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#D88080]"
+              disabled={loading}
+            >
+              {loading ? 'Submitting...' : 'Submit'}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
   );  
 }
