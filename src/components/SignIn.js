@@ -5,8 +5,6 @@ import logo from "../assets/images/signinlogo.png";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import Loader from "./Loader";
-import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-// import avatar from "../assets/images/profileimg.png";
 import { Toaster } from "react-hot-toast";
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -53,11 +51,9 @@ const formik = useFormik({
         setAuth(user); // Set the auth state with user details
         localStorage.setItem('token', token); // Store the token in localStorage
 
-
-      // Introduce a delay before navigation
       setTimeout(() => {
         navigate('/profile');
-      }, 3000); // Delay navigation by 2 seconds
+      }, 3000);
     }).catch(error => {
       toast.error("Login failed. Please check your credentials.");
       console.error('Login error:', error);
@@ -66,10 +62,10 @@ const formik = useFormik({
 });
 
 const [{ isLoading: fetchLoading, apiData, serverError }] = useFetch(auth.username ? `user/${auth.username}` : null);
-  //console.log("username after successful login", auth.username);
-  if (loading) return <Loader />; // Display loader if form submission is in progress
+  
+  if (loading) return <Loader />;
   if (fetchLoading) return <h1 className="text-2xl font-bold">Loading...</h1>;
-  //if (serverError) return <h1 className="text-xl text-red-500">{serverError.message}</h1>; 
+  
 
 return (
     <>
@@ -92,9 +88,9 @@ return (
               <span id="sub-heading" className="animate-pulse">
                 Welcome back!!
               </span>
-              {/* <span id="heading" className="heading">
+              <span id="heading" className="heading">
                 LOG IN
-              </span> */}
+              </span>
             </div>
             <div>
               <span className="text-sm text-black">
@@ -178,7 +174,7 @@ return (
                   Back
                 </Link>
                 <button
-                  type="submit" // This will trigger the form submission
+                  type="submit"
                   className="flex items-center h-7 bg-[#762626] no-underline rounded border pt-1 pb-1 pl-4 pr-4 justify-center gap-1"
                   style={{
                     color: "#ffffff",

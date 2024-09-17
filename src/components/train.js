@@ -1220,7 +1220,7 @@ export default function Train() {
                 Journey Details <span className="text-red-600">*</span>
               </label>
               <select 
-                className="mt-1 block w-full h-[40px] rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 bg-gray-700"
+                className="mt-1 block w-full h-[40px] rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 bg-red-950"
                 onChange={(e) => handleInputChange({ target: { name: 'journey', value: e.target.value } })}
               >
                 <option value="">--select--</option>
@@ -1235,7 +1235,7 @@ export default function Train() {
                 Train No. <span className="text-red-600">*</span>
               </label>
               <select 
-                className="mt-1 block w-full h-[40px] rounded-md border-gray-300 shadow-sm focus:border-indigo-300 bg-red-950 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 bg-gray-700"
+                className="mt-1 block w-full h-[40px] rounded-md border-gray-300 shadow-sm focus:border-indigo-300 bg-red-950 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                 onChange={(e) => handleInputChange({ target: { name: 'UTSDetails', value: e.target.value } })}
                 disabled={isTrainNumberDisabled}
               >
@@ -1264,7 +1264,7 @@ export default function Train() {
                 Type <span className="text-red-600">*</span>
               </label>
               <select 
-                className="mt-1 block w-full h-[40px] rounded-md bg-red-950 border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 bg-gray-700"
+                className="mt-1 block w-full h-[40px] rounded-md bg-red-950 border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                 onChange={(e) => handleInputChange({ target: { name: 'grievance', value: e.target.value } })}
               >
                 <option value="">--select--</option>
@@ -1279,7 +1279,7 @@ export default function Train() {
                 Sub Type <span className="text-red-600">*</span>
               </label>
               <select 
-                className="mt-1 block w-full h-[40px] rounded-md bg-red-950 border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 bg-gray-700"
+                className="mt-1 block w-full h-[40px] rounded-md bg-red-950 border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                 onChange={(e) => handleInputChange({ target: { name: 'subType', value: e.target.value } })}
               >
                 <option value="">--select--</option>
@@ -1298,7 +1298,7 @@ export default function Train() {
                 name="incidentDate"
                 value={formData.incidentDate}
                 onChange={handleInputChange}
-                className="mt-1 block w-full h-[40px] bg-red-950 rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 bg-gray-700"
+                className="mt-1 block w-full h-[40px] bg-red-950 rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
               />
             </div>
 
@@ -1329,7 +1329,7 @@ export default function Train() {
                 placeholder='phone number'
                 value={formData.mobileNumber}
                 onChange={handleInputChange}
-                className="mt-1 block w-full h-[40px] rounded-md bg-red-950 border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 bg-gray-700"
+                className="mt-1 block w-full h-[40px] rounded-md bg-red-950 border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
               />
             </div>
           </div>

@@ -9,7 +9,6 @@ import { doc ,serverTimestamp } from 'firebase/firestore';
 import { uploadBytes } from 'firebase/storage';
 
 const JourneyOptions = [
-  
       "Ambur -> AB",
       "Akbarpur -> ABP",
       "Abu Road -> ABR",
@@ -223,12 +222,14 @@ const JourneyOptions = [
       "Katni South -> KTES",
      
 ];
+
 const grievanceOptions = [
 "Medical Assistance", "Security", "Divyangjan Facilities", "Facilities for Women with Special needs", "Electrical Equipment",
   "Coach Cleanliness", "Punctuality", "Water Availability", "Coach Maintenance", "Catering & Vending Services",
   "Staff Behaviour", "Corruption / Bribery", "Bed Roll", "Miscellaneous"
    
 ];
+
 const grievanceMatrix = {
   "Security": [
     "Eve-teasing/Misbehaviour with lady passengers/Rape",
@@ -270,45 +271,43 @@ const grievanceMatrix = {
     "Others"
   ],
   "Water Availability": [
-     "Packaged Drinking Water / Rail Neer",
+    "Packaged Drinking Water / Rail Neer",
     "Toilet",
     "Washbasin",
     "Others"
   ],
   "Punctuality":[
-  "NTES APP",
-  "Late Running",
-  "Others",
+    "NTES APP",
+    "Late Running",
+    "Others",
   ],
-"Bed Roll":[
-  "Dirty / Torn",
-  "Overcharging",
-  "Non Availability",
-  "Others",
-],
-"Divyangjan Facilities":[
-  "Divyangjan coach unavailability",
-  "Divyangjan toilet/washbasin",
-  "Braille signage in coach",
-  "Others",
-],
-"Corruption / Bribery":[
-  "Corruption / Bribery",
-],
-"Facilities for Women with Special needs":[
-  "Baby Food",
-],
-"Medical Assistances":[
-  "Medical Assistance",
-],
-"Staff Behaviour":[
-  "Staff Behaviour",
-],
-"Miscellaneous":[
-  "Miscellaneous",
-],
-
-
+  "Bed Roll":[
+    "Dirty / Torn",
+    "Overcharging",
+    "Non Availability",
+    "Others",
+  ],
+  "Divyangjan Facilities":[
+    "Divyangjan coach unavailability",
+    "Divyangjan toilet/washbasin",
+    "Braille signage in coach",
+    "Others",
+  ],
+  "Corruption / Bribery":[
+    "Corruption / Bribery",
+  ],
+  "Facilities for Women with Special needs":[
+    "Baby Food",
+  ],
+  "Medical Assistances":[
+    "Medical Assistance",
+  ],
+  "Staff Behaviour":[
+    "Staff Behaviour",
+  ],
+  "Miscellaneous":[
+    "Miscellaneous",
+  ],
 };
 
 const trainOptions = [
@@ -1411,7 +1410,7 @@ export default function Station() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="w-full max-w-2xl p-8 bg-white rounded-lg shadow-md">
+      <div className="w-full max-w-5xl p-8 bg-white rounded-lg shadow-md">
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="col-span-2">
@@ -1423,7 +1422,7 @@ export default function Station() {
                 Station Name <span className="text-red-600">*</span>
               </label>
               <select 
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 bg-red-950 h-[40px]"
                 onChange={(e) => handleInputChange({ target: { name: 'StationName', value: e.target.value } })}
               >
                 <option value="">--select--</option>
@@ -1435,14 +1434,14 @@ export default function Station() {
 
             <div>
               <label className="block text-sm font-medium text-gray-800">
-                PNR/UTS
+                PNR/UTS Number
               </label>
               <input
                 type="number"
                 name="PNRUTS"
                 value={formData.PNRUTS}
                 onChange={handleInputChange}
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                className="mt-1 block w-full text-white rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 bg-red-950 h-[40px]"
               />
             </div>
 
@@ -1451,7 +1450,7 @@ export default function Station() {
                 Type <span className="text-red-600">*</span>
               </label>
               <select 
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 bg-red-950 h-[40px]"
                 onChange={(e) => handleInputChange({ target: { name: 'grievance', value: e.target.value } })}
               >
                 <option value="">--select--</option>
@@ -1466,7 +1465,7 @@ export default function Station() {
                 Sub Type <span className="text-red-600">*</span>
               </label>
               <select 
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 bg-red-950 h-[40px]"
                 onChange={(e) => handleInputChange({ target: { name: 'subType', value: e.target.value } })}
               >
                 <option value="">--select--</option>
@@ -1485,12 +1484,12 @@ export default function Station() {
                 name="incidentDate"
                 value={formData.incidentDate}
                 onChange={handleInputChange}
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 bg-red-950 h-[40px]"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-800">
+              <label className="block text-sm font-medium text-black">
                 Upload File <span className="text-red-600">*</span>
               </label>
               <input
@@ -1501,8 +1500,8 @@ export default function Station() {
                   file:mr-4 file:py-2 file:px-4
                   file:rounded-full file:border-0
                   file:text-sm file:font-semibold
-                  file:bg-violet-50 file:text-violet-700
-                  hover:file:bg-violet-100"
+                  file:bg-[#762626] file:text-white
+                  hover:file:bg-[#D88080]"
               />
             </div>
           </div>
@@ -1510,7 +1509,7 @@ export default function Station() {
           <div>
             <button
               type="submit"
-              className="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-[#75002b] hover:bg-[#5a0021] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#75002b] disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full md:w-auto px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-[#762626] hover:bg-[#D88080] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#D88080]"
               disabled={loading}
             >
               {loading ? 'Submitting...' : 'Submit'}

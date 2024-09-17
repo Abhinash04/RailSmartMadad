@@ -17,7 +17,6 @@ export default function Component() {
             style={{ aspectRatio: "600/600", objectFit: "cover" }}
           />
           <div className="absolute top-4 right-4">
-            {/* Dialog Button */}
             <button
               aria-haspopup="dialog"
               aria-expanded={isDialogOpen}

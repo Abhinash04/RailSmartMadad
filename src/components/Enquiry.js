@@ -1,9 +1,4 @@
 import React, { useState, useRef } from 'react';
-// import { 
-//   Button, TextField, Grid, Box, Typography, Divider, 
-//   Autocomplete, OutlinedInput, createTheme, ThemeProvider 
-// } from '@mui/material';
-// import { styled } from '@mui/material/styles';
 import { addDoc, collection } from 'firebase/firestore';
 import { ref, uploadString } from "firebase/storage";
 import { db, storage } from '../firebase';
@@ -12,58 +7,92 @@ import { getDownloadURL } from 'firebase/storage';
 import { doc ,serverTimestamp } from 'firebase/firestore';
 import { uploadBytes } from 'firebase/storage';
 
-// Custom styled components
-// const WhiteOutlinedInput = styled(OutlinedInput)(({ theme }) => ({
-//   '& .MuiOutlinedInput-notchedOutline': {
-//     borderColor: 'black',
-//   },
-//   '&:hover .MuiOutlinedInput-notchedOutline': {
-//     borderColor: 'black',
-//   },
-//   '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-//     borderColor: 'black',
-//   },
-//   '& input': {
-//     color: 'black',
-//   },
-// }));
-
-// const WhiteTextField = styled(TextField)(({ theme }) => ({
-//   '& .MuiOutlinedInput-notchedOutline': {
-//     borderColor: 'black',
-//   },
-//   '&:hover .MuiOutlinedInput-notchedOutline': {
-//     borderColor: 'black',
-//   },
-//   '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-//     borderColor: 'black',
-//   },
-//   '& input': {
-//     color: 'black',
-//   },
-// }));
-
-// const theme = createTheme({
-//   palette: {
-//     background: {
-//       default: "#000000",
-//     },
-//     primary: {
-//       main: "#000000",
-//     },
-//     secondary: {
-//       main: "#000000",
-//     },
-//   },
-// });
-
 const grievanceOptions = [
-  "Medical Assistance", "Security", "Divyangjan Facilities",
-  "Facilities for Women with Special Needs", "Electric Equipment",
-  "Coach-Cleanliness", "Punctuality", "Water Availability",
-  "Coach Maintenance", "Catering & Vending Service",
-  "Staff Behaviour", "Bed Roll", "Corruption/Bribery",
-];
+  "Medical Assistance", "Security", "Divyangjan Facilities", "Facilities for Women with Special needs", "Electrical Equipment",
+    "Coach Cleanliness", "Punctuality", "Water Availability", "Coach Maintenance", "Catering & Vending Services",
+    "Staff Behaviour", "Corruption / Bribery", "Bed Roll", "Miscellaneous"
+     
+  ];
+  
+  const grievanceMatrix = {
+    "Security": [
+      "Eve-teasing/Misbehaviour with lady passengers/Rape",
+      "Theft of Passengers Belongings/Snatching",
+      "Unauthorized person in Ladies/Disabled Coach/SLR/Reserve Coach",
+      "Harassment/Extortion by Security Personnel/Railway personnel",
+      "Nuisance by Hawkers/Beggar/Eunuch",
+      "Luggage Left Behind/Unclaimed/Suspected Articles",
+      "Passenger Missing/Not responding call",
+      "Smoking/Drinking Alcohol/Narcotics",
+      "Dacoity/Robbery/Murder/Riots",
+      "Quarrelling/Hooliganism",
+      "Passenger fallen down",
+      "Nuisance by passenger",
+      "Misbehaviour",
+      "Others"
+    ],
+    "Electrical Equipment": [
+      "Air Conditioner",
+      "Fans",
+      "Lights",
+      "Charging Points",
+      "Others"
+    ],
+    "Catering & Vending Services": [
+      "Overcharging",
+      "Service Quality & Hygiene",
+      "Food Quality & Quantity",
+      "E-Catering",
+      "Food & Water Not Available",
+      "Others"
+    ],
+    "Coach Maintenance": [
+      "Window/Seat Broken",
+      "Window/Door locking problem",
+      "Tap leaking/Tap not working",
+      "Broken/Missing Toilet Fittings",
+      "Jerks/Abnormal Sound",
+      "Others"
+    ],
+    "Water Availability": [
+      "Packaged Drinking Water / Rail Neer",
+      "Toilet",
+      "Washbasin",
+      "Others"
+    ],
+    "Punctuality":[
+      "NTES APP",
+      "Late Running",
+      "Others",
+    ],
+    "Bed Roll":[
+      "Dirty / Torn",
+      "Overcharging",
+      "Non Availability",
+      "Others",
+    ],
+    "Divyangjan Facilities":[
+      "Divyangjan coach unavailability",
+      "Divyangjan toilet/washbasin",
+      "Braille signage in coach",
+      "Others",
+    ],
+    "Corruption / Bribery":[
+      "Corruption / Bribery",
+    ],
+    "Facilities for Women with Special needs":[
+      "Baby Food",
+    ],
+    "Medical Assistances":[
+      "Medical Assistance",
+    ],
+    "Staff Behaviour":[
+      "Staff Behaviour",
+    ],
+    "Miscellaneous":[
+      "Miscellaneous",
+    ],
+  };
 
 export default function Enquiry() {
   const [formData, setFormData] = useState({
@@ -75,6 +104,7 @@ export default function Enquiry() {
   const [file, setFile] = useState(null);
   const [loading, setLoading] = useState(false);
   const filePickerRef = useRef(null);
+  const [subTypeOptions, setSubTypeOptions] = useState([]);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -82,6 +112,15 @@ export default function Enquiry() {
       ...prevState,
       [name]: value
     }));
+   
+    if (name === 'grievance') {
+      setSubTypeOptions(grievanceMatrix[value] || []);
+    }
+    setFormData((prevState) => ({
+      ...prevState,
+      [event.target.name]: event.target.value,
+    }));
+  
   };
 
   const handleFileChange = (event) => {
@@ -95,19 +134,16 @@ export default function Enquiry() {
     setLoading(true);
 
     try {
-      // First, add the document to Firestore without the file
       const docRef = await addDoc(collection(db, "Enquiry"), {
         ...formData,
         timestamp: serverTimestamp()
       });
 
-      // If a file was selected, upload it to Firebase Storage
       if (file) {
         const fileRef = ref(storage, `Enquiry/${docRef.id}/${file.name}`);
         await uploadBytes(fileRef, file);
         const downloadURL = await getDownloadURL(fileRef);
 
-        // Update the Firestore document with the file URL
         await updateDoc(doc(db, "Enquiry", docRef.id), {
           fileUrl: downloadURL,
           fileName: file.name
@@ -115,7 +151,6 @@ export default function Enquiry() {
       }
 
       console.log("Form submitted successfully");
-      // Reset form after successful submission
       setFormData({
         mobileNumber: "",
         grievance: "",
@@ -147,7 +182,7 @@ export default function Enquiry() {
                 Type <span className="text-red-600">*</span>
               </label>
               <select 
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 bg-red-950 h-[40px]"
                 onChange={(e) => handleInputChange({ target: { name: 'grievance', value: e.target.value } })}
               >
                 <option value="">--select--</option>
@@ -158,15 +193,15 @@ export default function Enquiry() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-800">
+            <label className="block text-sm font-medium text-gray-800">
                 Sub Type <span className="text-red-600">*</span>
               </label>
               <select 
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 bg-red-950 h-[40px]"
                 onChange={(e) => handleInputChange({ target: { name: 'subType', value: e.target.value } })}
               >
                 <option value="">--select--</option>
-                {grievanceOptions.map((option, index) => (
+                {subTypeOptions.map((option, index) => (
                   <option key={index} value={option}>{option}</option>
                 ))}
               </select>
@@ -181,12 +216,12 @@ export default function Enquiry() {
                 name="incidentDate"
                 value={formData.incidentDate}
                 onChange={handleInputChange}
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 bg-red-950 h-[40px]"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-800">
+              <label className="block text-sm font-medium text-black">
                 Upload File <span className="text-red-600">*</span>
               </label>
               <input
@@ -197,8 +232,8 @@ export default function Enquiry() {
                   file:mr-4 file:py-2 file:px-4
                   file:rounded-full file:border-0
                   file:text-sm file:font-semibold
-                  file:bg-violet-50 file:text-violet-700
-                  hover:file:bg-violet-100"
+                  file:bg-[#762626] file:text-white
+                  hover:file:bg-[#D88080]"
               />
             </div>
           </div>
@@ -206,7 +241,7 @@ export default function Enquiry() {
           <div>
             <button
               type="submit"
-              className="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-[#75002b] hover:bg-[#5a0021] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#75002b] disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full md:w-auto px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-[#762626] hover:bg-[#D88080] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#D88080]"
               disabled={loading}
             >
               {loading ? 'Submitting...' : 'Submit'}
