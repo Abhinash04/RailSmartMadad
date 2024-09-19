@@ -234,7 +234,43 @@ export default function Profile() {
               hidden={activeTab !== "trackConcern"}
               className="tab-panel"
             >
-              <div className="bg-white shadow-md rounded-lg p-6">Track concern content goes here...</div>
+              <div className="bg-white shadow-md rounded-lg">
+                <div className="p-4 border-b">
+                  <h3 className="text-lg font-semibold">TRACK YOUR CONCERN</h3>
+                  <p className="text-sm text-gray-600">Fill out the form below to track your concern.</p>
+                </div>
+                <div className="p-4 space-y-4">
+                  <div className="space-y-2">
+                    <label htmlFor="concern-title">CONCERN ID</label>
+                    <input
+                      id="concern-title"
+                      placeholder="Enter your concern ID"
+                      className="w-full border p-2 rounded"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label htmlFor="concern-description">CONCERN DESCRIPTION</label>
+                    <textarea
+                      id="concern-description"
+                      placeholder="Describe your concern in detail"
+                      className="w-full border p-2 rounded min-h-[100px]"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label htmlFor="concern-status">CONCERN STATUS</label>
+                    <select id="concern-status" className="w-full border p-2 rounded">
+                      <option value="open">Open</option>
+                      <option value="in-progress">In Progress</option>
+                      <option value="resolved">Resolved</option>
+                    </select>
+                  </div>
+                </div>
+                <div className="p-4 border-t flex justify-center">
+                  <button className="bg-[#762626] text-white px-4 py-2 w-[300px] rounded hover:bg-[#D88080]">
+                    SUBMIT
+                  </button>
+                </div>
+              </div>
             </div>
             <div
               role="tabpanel"
@@ -243,7 +279,43 @@ export default function Profile() {
               hidden={activeTab !== "suggestion"}
               className="tab-panel"
             >
-              <div className="bg-white shadow-md rounded-lg p-6">Suggestion content goes here...</div>
+              <div className="bg-white shadow-md rounded-lg">
+                <div className="p-4 border-b">
+                  <h3 className="text-lg font-semibold">SUGGESTION</h3>
+                  <p className="text-sm text-gray-600">Fill out the form below to provide a suggestion.</p>
+                </div>
+                <div className="p-4 space-y-4">
+                  <div className="space-y-2">
+                    <label htmlFor="suggestion-title">SUGGESTION TITLE</label>
+                    <input
+                      id="suggestion-title"
+                      placeholder="Enter your suggestion title"
+                      className="w-full border p-2 rounded"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label htmlFor="suggestion-description">SUGGESTION DESCRIPTION</label>
+                    <textarea
+                      id="suggestion-description"
+                      placeholder="Describe your suggestion in detail"
+                      className="w-full border p-2 rounded min-h-[100px]"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label htmlFor="suggestion-priority">SUGGESTION PRIORITY</label>
+                    <select id="suggestion-priority" className="w-full border p-2 rounded">
+                      <option value="low">Low</option>
+                      <option value="medium">Medium</option>
+                      <option value="high">High</option>
+                    </select>
+                  </div>
+                </div>
+                <div className="p-4 border-t flex justify-center">
+                  <button className="bg-[#762626] text-white px-4 py-2 w-[300px] rounded hover:bg-[#D88080]">
+                    SUBMIT
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>

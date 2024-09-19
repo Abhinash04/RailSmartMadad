@@ -16,7 +16,7 @@ const Dashboard = () => {
     { icon: FaRegFileAlt, value: "10M+", label: "Complaints Registered", color: "text-blue-500" },
     { icon: FaCheckCircle, value: "500K+", label: "Complaints Resolved", color: "text-green-500" },
     { icon: FaHourglassHalf, value: "300K+", label: "Complaints Pending", color: "text-amber-500" },
-    { icon: FaUsers, value: "4", label: "Users Rating", color: "text-purple-500", star: true }
+    { icon: FaUsers, value: "5", label: "Users Rating", color: "text-purple-500", star: true }
   ];
 
   return (

@@ -29,7 +29,7 @@ const IconSideNav = () => {
   };
 
   return (
-    <div className=" text-slate-100 flex">
+    <div className=" text-slate-100 md:flex">
       <SideNav selected={selected} setSelected={setSelected} />
       <div className="w-full">
         <div className="h-[40px] m-4 rounded">
@@ -53,7 +53,7 @@ const IconSideNav = () => {
 
 const SideNav = ({ selected, setSelected }) => {
   return (
-    <nav className="h-[725px] w-fit bg-red-400 p-4 flex flex-col items-center gap-7">
+    <nav className="sm:h-[725px] w-fit bg-red-400 p-2 mt-1 sm:rounded-2xl sm:p-4 flex md:flex-col items-center gap-3 sm:gap-7">
       <NavItem selected={selected === 0} id={0} setSelected={setSelected}>
         <IoMdTrain className="text-4xl" />
       </NavItem>

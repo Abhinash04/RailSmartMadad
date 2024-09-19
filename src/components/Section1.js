@@ -5,6 +5,7 @@ import heroVideo from "../assets/videos/rsm1.mp4";
 const Section1 = () => {
   return (
     <div className='Wrapper' id='section1'>
+      <div id="offer" class="md:h-16 sm:h-14 sm:text:sm md:text-lg text-black sm:flex px-4 py-3 items-center justify-center" >For any grievance call on 139<a class="text-black" href="https://pib.gov.in/PressReleaseIframePage.aspx?PRID=1703201">About Helpline Number</a></div>
       <div className='container flex flex-col lg:flex-row lg:items-center'>
         {/* Text Section */}
         <div className="mb-16 mt-5 md:mb-0 md:max-w-xl md:mt-0 sm:mx-auto md:text-center lg:text-left lg:w-1/2">

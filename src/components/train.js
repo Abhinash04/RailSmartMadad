@@ -1246,7 +1246,7 @@ export default function Train() {
               </select>
             </div>
 
-            {/* <div>
+            <div>
               <label className="block text-sm font-medium text-gray-700">
                 PNR/UTS
               </label>
@@ -1255,9 +1255,9 @@ export default function Train() {
                 name="PNRUTS"
                 value={formData.PNRUTS}
                 onChange={handleInputChange}
-                className="mt-1 block w-full rounded-md bg-red-950 border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                className="mt-1 block w-full h-[40px] rounded-md bg-red-950 border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
               />
-            </div> */}
+            </div> 
 
             <div>
               <label className="block text-sm font-medium text-black">
@@ -1326,7 +1326,7 @@ export default function Train() {
               <input
                 type="number"
                 name="mobileNumber"
-                placeholder='phone number'
+                placeholder='Phone number'
                 value={formData.mobileNumber}
                 onChange={handleInputChange}
                 className="mt-1 block w-full h-[40px] rounded-md bg-red-950 border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"

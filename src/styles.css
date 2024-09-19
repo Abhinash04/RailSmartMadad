@@ -50,6 +50,18 @@
     line-height: 50px;
   }
 
+  #offer::before{
+    content: '';
+    position: absolute;
+    height: 50px;
+    width: 60px;
+    /* background: rgb(255, 255, 255); */
+    mix-blend-mode: screen;
+    opacity: 0.7;
+    filter: blur(34px);
+    animation: 4s linear 0s infinite normal forwards running shimmer;
+  }
+
   /* Navbar Styles */
   #navbar {
     font-family: "Inter", sans-serif; /*Inter font*/

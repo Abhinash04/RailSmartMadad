@@ -227,7 +227,7 @@ const Register = () => {
               </button>
               <div className="text-black" style={{ width: "90px", fontSize: "20px", fontWeight: "700" }}>OR</div>
               <button type="button" className='login-with-goggle-button justify-center border border-black btn btn-primary' onClick={loginwithgoogle} style={{ width: "300px", fontSize: "12px", fontWeight: "700" }}>
-                Sign In with Google
+                Sign Up with Google
               </button>
             </form>
 
